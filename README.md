@@ -38,3 +38,11 @@ Pipeline >> Job1 >> Job2 >> Job3  start
       SftpMultiFileWriter()  
       
    pl.start
+   
+   ==================================================
+   Way to run test cases...
+   
+   mvn clean install scoverage:report -Dsuites="com.org.dilip.sparksftp.StepSuites"
+   
+   
+   ++++++++++++++++++++++++++++++++++++++++++++++
