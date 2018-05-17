@@ -25,7 +25,7 @@ class MainStream extends MainStreamService {
   //change read/write format ex: MultiFileReader(Formatter.apply("parquet")), default format is csv
   def createPipline =
     Pipeline[Seq[String], Seq[String]]() >>
-      MultiFileReader(Formatter.apply("abc")) >>
+      MultiFileReader(Formatter.apply()) >>
       MultiFileWriter(Formatter.apply()) >>
       SftpMultiFileWriter()
   def init[A <: Pipeline[Seq[String], Some[String]]](f: => A) = executePipline(f)
