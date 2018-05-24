@@ -13,10 +13,14 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.DataFrameWriter
 import org.apache.spark.sql.functions._
+import com.org.dilip.sparksftp.sparksftp.RorD
+
 
 
 
 trait IO {
+  
+  def convert(x:Option[RorD]) = x
 
   def toReadDataFromParquet(implicit path: String = "src/main/resources/input/"): DataFrame = SparkSupport.sqlCtx.read.parquet(path)
 
