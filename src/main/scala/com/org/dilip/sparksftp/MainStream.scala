@@ -3,12 +3,11 @@ package com.org.dilip.sparksftp
 import com.org.dilip.pipeline.pipeline.Pipeline
 import com.org.dilip.sparksftp.commons.Properties
 import com.org.dilip.sparksftp.jobs._
+import scala.util._
 import com.org.dilip.sparksftp.jobs.SftpMultiFileWriter
-import scala.util.Success
-import scala.util.Failure
 import com.org.dilip.pipeline.executor.PipelineExecutor
 import com.org.dilip.pipeline.executor.SyncExecution
-import scala.util.Try
+
 
 trait MainStreamService {
   //required implicit declaration
