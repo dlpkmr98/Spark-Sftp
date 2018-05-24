@@ -14,10 +14,11 @@ trait MainStreamService {
   //required implicit declaration
   implicit def >>[A](c: A) = c.asInstanceOf[Pipeline[Seq[String], Some[String]]]
   implicit def >>>[C](c: C) = c.toString()
+  implicit def >>>>[B](c: B) = c.toString().toArray
 }
 
 class MainStream extends MainStreamService {
-  def init[A, B <: Array[String], C <: String](f:(A,C) => Unit,f1: => A, f2: (B, C) => C) = (x: B) => (y: C) => f(f1,f2(x, y))
+  def init[A,B,C](f:(A,C) => Unit,f1: => A, f2: (B, C) => C) = (x: B) => (y: C) => f(f1,f2(x, y))
 }
 
 object MainStream {
@@ -46,3 +47,8 @@ object MainStream {
   //functional way
   def main(args: Array[String]): Unit = MainStream().init(executePipline,createPipline, getInput)(args)(in)
 }
+
+
+
+
+
