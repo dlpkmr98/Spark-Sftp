@@ -17,8 +17,8 @@ package object sparksftp {
   implicit def i3(df: DataFrame): RorD = Right(df)
   implicit def i4(rdd: RDD[Row]): RorD = Left(rdd)
   // from object to option of RorD
-  implicit def dataFrame2OptionRddOrDf(df: DataFrame): Option[RorD] = Some(Right(df))
-  implicit def rdd2OptionRddOrDf(rdd: RDD[Row]): Option[RorD] = Some(Left(rdd))
+  implicit def i5(df: DataFrame): Option[RorD] = Some(Right(df))
+  implicit def i6(rdd: RDD[Row]): Option[RorD] = Some(Left(rdd))
   
 
 }
