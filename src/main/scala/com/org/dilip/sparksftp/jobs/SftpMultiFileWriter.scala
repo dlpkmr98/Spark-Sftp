@@ -12,14 +12,16 @@ import org.apache.commons.io.IOUtils
 import com.org.dilip.sparksftp.commons.Properties
 import com.org.dilip.pipeline.pipeline.Pipeline
 import com.org.dilip.pipeline.pipeline.Transformation
+import com.org.dilip.sparksftp.sparksftp._
 
-class SftpMultiFileWriter extends Transformation[Seq[DataFrame], Some[String]] with Utilities {
+class SftpMultiFileWriter extends Transformation[Seq[Option[RorD]], Some[String]] with Utilities {
 
   /* (non-Javadoc)
  * @see com.org.dilip.pipeline.pipeline.Transformation#execute()
  */
-override def execute: Seq[DataFrame] => Some[String] = dfSeq => {
-    dfSeq.foreach(_.show(false))
+override def execute: Seq[Option[RorD]] => Some[String] = dfSeq => {
+    require(dfSeq.head.get.isRight,"atleast one dataframe is require")
+    dfSeq.foreach(_.get.right.get.show(false))
     lazy val fileSeq = dfSeq.indices.map(_ + Properties.file_name)
     fileSeq.foreach(implicit f => 
     SftpMultiFileWriter execute (SftpStream(f).init(Properties.output_path), createPrivateKey, sshConnection)
