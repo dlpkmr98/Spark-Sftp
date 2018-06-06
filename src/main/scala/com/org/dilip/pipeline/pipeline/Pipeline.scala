@@ -4,7 +4,7 @@ import com.org.dilip.pipeline.executor.PipelineExecutor
 import scala.util.Try
 import com.org.dilip.pipeline.executor.SyncExecution
 
-trait Pipeline[Input, Output] {
+private [dilip] trait Pipeline[Input, Output] {
   val stages: List[Staging]
 
   def >>[X](f: Output => X): Pipeline[Input, X] = add(f)
